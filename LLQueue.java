@@ -19,13 +19,14 @@ public class LLQueue<T> implements Queue<T> {
     // default constructor creates an empty queue
     public LLQueue()
  { 
-
+     _front = null;
+     _end = null;
     }
 
     // means of adding a thing to the collection
     public void enqueue( T enQVal ) 
 {
-
+    _end.setNext( enQVal );
     }//O(?)
 
 
@@ -34,27 +35,28 @@ public class LLQueue<T> implements Queue<T> {
     // assume _queue ! empty
     public T dequeue() 
 { 
-
+    LLNode<T> execute = new LLNode<T> ( _front, null );
+    _front.setValue( null );
     }//O(?)
 
 
     // means of peeking at thing next in line for removal
     public T peekFront() 
 {
-
+   
     }//O(?)
 
 
     public boolean isEmpty() 
 {
-
+    return _end.getNext().equals( _front );
     }//O(?)
 
 
     // print each node, separated by spaces
     public String toString() 
 { 
-
+    
     }//O(?)
 
 
