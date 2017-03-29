@@ -23,69 +23,102 @@ public class LLQueue<T> implements Queue<T> {
 
     // default constructor creates an empty queue
     public LLQueue()
- { 
-     _front = null;
-     _end = null;
+    { 
+	_front = null;
+	_end = null;
+	_counter = 0;//for keeping track of the number of things in a collection
     }
 
     // means of adding a thing to the collection
     public void enqueue( T enQVal ) 
-{
-    _end.setNext( enQVal );
-    }//O(?)
+    {
+	if ( _counter = 0 ) {//_end and _front both point to null
+	    //if there is only one thing in a collection, it is both the front and end
+	    _end = enQVal;
+	    _front = enQVal;
+	    _counter += 1;//update number of things in the collection
+	}
+	else {//non-empty queue
+	    _end.setNext( enQVal );
+	    _end = end.getNext();//moves _end pointer to new ending
+	    _counter += 1;//update number of things in the collection
+	}
+    }//O(1) [because there are no loops...?]
 
 
     // means of removing a thing from the collection
     // remove and return thing at front of queue
     // assume _queue ! empty
     public T dequeue() 
-{ 
-    LLNode<T> execute = new LLNode<T> ( _front, null );
-    _front.setValue( null );
-    }//O(?)
+    {
+	if ( _counter = 1 ) {//only one thing to remove
+	    T retQ = _front.getValue();//set thing to return
+	    _front = null;
+	    _end = null;
+	    _counter -= 1;//update number of things in the collection
+	    return retQ;
+	}
+	else {//non-empty queue
+	    T retQ = _front.getValue();//set thing to return
+	    _front = _front.getNext();//move _front pointer to next thing
+	    _counter -= 1;//update number of things in the collection
+	    return retQ;
+	}
+    
+    }//O(1) [because there are no loops...?]
 
 
     // means of peeking at thing next in line for removal
     public T peekFront() 
-{
-   
-    }//O(?)
+    {
+	if ( _counter <= 1 ) {//nothing "next in queue"
+	    System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
+	    return null;
+	}
+	else {//something "next in queue"
+	    T retQ = _front.getNext().getValue();//set return value
+	    return retQ;
+	}
+    }//O(1) [because there are no loops...?]
 
 
     public boolean isEmpty() 
-{
-    return _end.getNext().equals( _front );
-    }//O(?)
+    {
+	return _counter == 0//this is self explanatory
+    }//O(1)
 
 
     // print each node, separated by spaces
     public String toString() 
-{ 
-    
-    }//O(?)
+    {
+	String retStr = "";
+	LLNode pointer = _front;//pointer to first thing
+	for ( int i = 0; i < _counter; i++ ) {
+	    retStr += " ";
+	    retStr += pointer.getValue;//add thing to String
+	    pointer = pointer.getNext();//move pointer to next thing
+	}
+	return retStr;    
+    }//O(n)
 
 
 
     public static void main( String[] args ) {
-
-	/*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-	Queue<String> LLQueuelJ = new LLQueue<String>();
-
-	System.out.println("\nnow enqueuing thrice..."); 
-	LLQueuelJ.enqueue("James");
-	LLQueuelJ.enqueue("Todd");
-	LLQueuelJ.enqueue("Smith");
-
-	System.out.println("\nnow testing toString()..."); 
-	System.out.println( LLQueuelJ ); //for testing toString()...
-
-	System.out.println("\nnow dequeuing thrice..."); 
-	System.out.println( LLQueuelJ.dequeue() );
-	System.out.println( LLQueuelJ.dequeue() );
-	System.out.println( LLQueuelJ.dequeue() );
-
-	System.out.println("\nDequeuing from empty queue should yield error..."); 
-	System.out.println( LLQueuelJ.dequeue() );
+	
+	  Queue<String> LLQueuelJ = new LLQueue<String>();
+	  System.out.println("\nnow enqueuing thrice..."); 
+	  LLQueuelJ.enqueue("James");
+	  LLQueuelJ.enqueue("Todd");
+	  LLQueuelJ.enqueue("Smith");
+	  System.out.println("\nnow testing toString()..."); 
+	  System.out.println( LLQueuelJ ); //for testing toString()...
+	  System.out.println("\nnow dequeuing thrice..."); 
+	  System.out.println( LLQueuelJ.dequeue() );
+	  System.out.println( LLQueuelJ.dequeue() );
+	  System.out.println( LLQueuelJ.dequeue() );
+	  System.out.println("\nDequeuing from empty queue should yield error..."); 
+	  System.out.println( LLQueuelJ.dequeue() );
+	  /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
 	  ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
 
     }//end main
