@@ -84,7 +84,7 @@ public class LLQueue<T> implements Queue<T> {
 
     public boolean isEmpty() 
     {
-	return _counter == 0//this is self explanatory
+	return _counter == 0;//this is self explanatory
     }//O(1)
 
 
