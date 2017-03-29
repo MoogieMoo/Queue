@@ -60,6 +60,10 @@ public class LLQueue<T> implements Queue<T> {
 	    _counter -= 1;//update number of things in the collection
 	    return retQ;
 	}
+	else if ( _counter == 0 ) {//nothing to remove
+	    System.out.println( "Error! Nothing to remove!" );
+	    return null;
+	}
 	else {//non-empty queue
 	    T retQ = _front.getValue();//set thing to return
 	    _front = _front.getNext();//move _front pointer to next thing
