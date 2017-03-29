@@ -33,7 +33,7 @@ public class LLQueue<T> implements Queue<T> {
     // means of adding a thing to the collection
     public void enqueue( T enQVal ) 
     {
-	    LLNode q = new LLLNode( enQVal, null );//instantiate new node
+	    LLNode q = new LLNode( enQVal, null );//instantiate new node
 	if ( _counter == 0 ) {//_end and _front both point to null
 	    //if there is only one thing in a collection, it is both the front and end
 	    _end = q;
