@@ -20,32 +20,23 @@
 public class ALQueue<T> implements Queue<T> {
 
     private ArrayList()<T> queue;
+    T _front;
+    T _end;
     int _counter;
 
     // default constructor creates an empty queue
     public ALQueue()
     { 
-	_front = queue[0];
-	_end = queue[ queue.size() - 1 ];
-	_counter = 0;//for keeping track of the number of things in a collection
+	_front = queue.get(0);
+	_end = queue.get( queue.size() - 1 );
+	_counter = queue.size();//for keeping track of the number of things in a collection
     }
 
     // means of adding a thing to the collection
     public void enqueue( T enQVal ) 
     {
-	    ArrayList() q = new ArrayList()( enQVal, null );//instantiate new node
-	if ( _counter == 0 ) {//_end and _front both point to null
-	    //if there is only one thing in a collection, it is both the front and end
-	    _end = q;
-	    _front = q;
-	    _counter += 1;//update number of things in the collection
-	}
-	else {//non-empty queue
-	    _end.setNext( q );
-	    _end = _end.getNext();//moves _end pointer to new ending
-	    _counter += 1;//update number of things in the collection
-	}
-    }//O(1) [because there are no loops...?]
+	queue.add( enQVal );
+    }//O(?)
 
 
     // means of removing a thing from the collection
