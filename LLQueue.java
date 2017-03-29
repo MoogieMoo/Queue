@@ -20,6 +20,7 @@
 public class LLQueue<T> implements Queue<T> {
 
     private LLNode<T> _front, _end;
+    int _counter;
 
     // default constructor creates an empty queue
     public LLQueue()
