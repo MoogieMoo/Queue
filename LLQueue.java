@@ -1,3 +1,8 @@
+// Maggie Xia
+// APCS2 pd1
+// HW26--The English Do Not Wait In Line for Soup or Anything Else; They “Queue Up”
+// 2017-03-28
+
 /*****************************************************
  * class LLQueue
  * uses a linked list to implement a QUEUE
