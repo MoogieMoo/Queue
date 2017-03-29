@@ -42,7 +42,7 @@ public class LLQueue<T> implements Queue<T> {
 	}
 	else {//non-empty queue
 	    _end.setNext( q );
-	    _end = end.getNext();//moves _end pointer to new ending
+	    _end = _end.getNext();//moves _end pointer to new ending
 	    _counter += 1;//update number of things in the collection
 	}
     }//O(1) [because there are no loops...?]
@@ -97,7 +97,7 @@ public class LLQueue<T> implements Queue<T> {
 	LLNode pointer = _front;//pointer to first thing
 	for ( int i = 0; i < _counter; i++ ) {
 	    retStr += " ";
-	    retStr += pointer.getValue;//add thing to String
+	    retStr += pointer.getValue();//add thing to String
 	    pointer = pointer.getNext();//move pointer to next thing
 	}
 	return retStr;    
