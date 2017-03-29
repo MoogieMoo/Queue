@@ -33,14 +33,15 @@ public class LLQueue<T> implements Queue<T> {
     // means of adding a thing to the collection
     public void enqueue( T enQVal ) 
     {
-	if ( _counter = 0 ) {//_end and _front both point to null
+	    LLNode q = new LLLNode( enQVal, null );//instantiate new node
+	if ( _counter == 0 ) {//_end and _front both point to null
 	    //if there is only one thing in a collection, it is both the front and end
-	    _end = enQVal;
-	    _front = enQVal;
+	    _end = q;
+	    _front = q;
 	    _counter += 1;//update number of things in the collection
 	}
 	else {//non-empty queue
-	    _end.setNext( enQVal );
+	    _end.setNext( q );
 	    _end = end.getNext();//moves _end pointer to new ending
 	    _counter += 1;//update number of things in the collection
 	}
@@ -52,7 +53,7 @@ public class LLQueue<T> implements Queue<T> {
     // assume _queue ! empty
     public T dequeue() 
     {
-	if ( _counter = 1 ) {//only one thing to remove
+	if ( _counter == 1 ) {//only one thing to remove
 	    T retQ = _front.getValue();//set thing to return
 	    _front = null;
 	    _end = null;
