@@ -26,13 +26,26 @@ public class RQueue<T> implements Queue<T>
     // default constructor creates an empty queue
     public RQueue() 
 	{ 
-	    /* YIH */
+	    _front = null;
+	    _end = null;
+	    _size = 0;
 	}
 
 
     public void enqueue( T enQVal ) 
     {
-	/* YIH */
+	LLNode q = new LLNode( enQVal, null );//instantiate new node
+	if ( _size == 0 ) {//_end and _front both point to null
+	    //if there is only one thing in a collection, it is both the front and end
+	    _end = q;
+	    _front = q;
+	    _size += 1;//update number of things in the collection
+	}
+	else {//non-empty queue
+	    _end.setNext( q );
+	    _end = _end.getNext();//moves _end pointer to new ending
+	    _size += 1;//update number of things in the collection
+	}
     }
 
 
@@ -59,7 +72,9 @@ public class RQueue<T> implements Queue<T>
      ******************************************/
     public void sample () 
     {
-	/* YIH */
+	LLNode s = _front;
+	int randomNumber = (int) (Math.random() * _size) + 1;
+	( 
     }
 
 
