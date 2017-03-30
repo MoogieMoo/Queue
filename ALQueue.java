@@ -54,7 +54,7 @@ public class ALQueue<T> implements Queue<T> {
 	for ( int i = 1; i < copy.size(); i++ ) {//copy the ArrayList excluding removed thing
 	    copy.set( i - 1, queue.get(i) );
 	}
-	_front = copy;//update queue
+	queue = copy;//update queue
 	return ret;
     
     /*
