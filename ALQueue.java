@@ -14,8 +14,9 @@
  *
  ******************************************************/
 
-//import java.util.NoSuchElementException;
-//import java.lang.RuntimeException;
+import java.util.NoSuchElementException;
+import java.lang.RuntimeException;
+import java.lang.ArrayList;
 
 public class ALQueue<T> implements Queue<T> {
 
@@ -49,7 +50,7 @@ public class ALQueue<T> implements Queue<T> {
 	}
 
 	T ret = _front;//set thing to return
-	List<T> copy = new ArrayList<T>( queue.size() - 1);
+	ArrayList<T> copy = new ArrayList<T>( queue.size() - 1);
 	for ( int i = 1; i < copy.size(); i++ ) {//copy the ArrayList excluding removed thing
 	    copy.set( i - 1, queue.get(i) );
 	}
