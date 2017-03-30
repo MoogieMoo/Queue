@@ -28,8 +28,7 @@ public class ALQueue<T> implements Queue<T> {
     public ALQueue()
     { 
 	_front = queue.get(0);
-	_end = queue.get( queue.size() - 1 );
-	_counter = queue.size();//for keeping track of the number of things in a collection
+	_end = queue.get( queue.size() - 1 );	
     }
 
     // means of adding a thing to the collection
@@ -44,80 +43,117 @@ public class ALQueue<T> implements Queue<T> {
     // assume _queue ! empty
     public T dequeue() 
     {
-	if ( _counter == 1 ) {//only one thing to remove
-	    T retQ = _front.getValue();//set thing to return
-	    _front = null;
-	    _end = null;
-	    _counter -= 1;//update number of things in the collection
-	    return retQ;
-	}
-	else if ( _counter == 0 ) {//nothing to remove
+	//error
+	if ( queue.size() == 0 ) {//nothing to remove
 	    System.out.println( "Error! Nothing to remove!" );
 	    return null;
 	}
-	else {//non-empty queue
-	    T retQ = _front.getValue();//set thing to return
-	    _front = _front.getNext();//move _front pointer to next thing
-	    _counter -= 1;//update number of things in the collection
-	    return retQ;
+
+	T ret = _front;//set thing to return
+	ArrayList()<T> copy = new ArrayList(queue.size() - 1)<T>;
+	for ( int i = 1; i < copy.size(); i++ ) {//copy the ArrayList excluding removed thing
+	    copy.set( i - 1, queue.get(i) );
 	}
+	_front = copy;//update queue
+	return ret;
+    }
+    /*
+      if ( _counter == 1 ) {//only one thing to remove
+      T retQ = _front.getValue();//set thing to return
+      _front = null;
+      _end = null;
+      _counter -= 1;//update number of things in the collection
+      return retQ;
+      }
+      else if ( _counter == 0 ) {//nothing to remove
+      System.out.println( "Error! Nothing to remove!" );
+      return null;
+      }
+      else {//non-empty queue
+      T retQ = _front.getValue();//set thing to return
+      _front = _front.getNext();//move _front pointer to next thing
+      _counter -= 1;//update number of things in the collection
+      return retQ;
+      }
+    */
     
-    }//O(1) [because there are no loops...?]
+}//O(?)
 
 
-    // means of peeking at thing next in line for removal
-    public T peekFront() 
-    {
-	if ( _counter <= 1 ) {//nothing "next in queue"
-	    System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
-	    return null;
-	}
-	else {//something "next in queue"
-	    T retQ = _front.getNext().getValue();//set return value
-	    return retQ;
-	}
-    }//O(1) [because there are no loops...?]
-
-
-    public boolean isEmpty() 
-    {
-	return _counter == 0;//this is self explanatory
-    }//O(1)
-
-
-    // print each node, separated by spaces
-    public String toString() 
-    {
-	String retStr = "";
-	ArrayList() pointer = _front;//pointer to first thing
-	for ( int i = 0; i < _counter; i++ ) {
-	    retStr += " ";
-	    retStr += pointer.getValue();//add thing to String
-	    pointer = pointer.getNext();//move pointer to next thing
-	}
-	return retStr;    
-    }//O(n)
-
-
-
-    public static void main( String[] args ) {
+// means of peeking at thing next in line for removal
+public T peekFront() 
+{
+    //error
+    if ( queue.size() <= 1 ) {//nothing "next in queue"
+	System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
+	return null;
+    }
 	
-	  Queue<String> ALQueuelJ = new ALQueue<String>();
-	  System.out.println("\nnow enqueuing thrice..."); 
-	  ALQueuelJ.enqueue("James");
-	  ALQueuelJ.enqueue("Todd");
-	  ALQueuelJ.enqueue("Smith");
-	  System.out.println("\nnow testing toString()..."); 
-	  System.out.println( ALQueuelJ ); //for testing toString()...
-	  System.out.println("\nnow dequeuing thrice..."); 
-	  System.out.println( ALQueuelJ.dequeue() );
-	  System.out.println( ALQueuelJ.dequeue() );
-	  System.out.println( ALQueuelJ.dequeue() );
-	  System.out.println("\nDequeuing from empty queue should yield error..."); 
-	  System.out.println( ALQueuelJ.dequeue() );
-	  /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-	  ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
+    T ret = queue.get(1);//next thing is at index 1
+    return ret;
+}
+/*
+  if ( _counter <= 1 ) {//nothing "next in queue"
+  System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
+  return null;
+  }
+  else {//something "next in queue"
+  T retQ = _front.getNext().getValue();//set return value
+  return retQ;
+  }
+*/
+}//O(?)
 
-    }//end main
+
+public boolean isEmpty() 
+{
+    return queue.size() == 0;//this is self explanatory
+}//O(?)
+
+
+// print each node, separated by spaces
+public String toString() 
+{
+    String ret = "";
+    for ( int i = 0; i < queue.size(); i++ ) {//traverse
+	ret += " ";
+	ret += queue.get(i);//add to String
+    }
+    return ret;
+}
+	
+/*
+  String retStr = "";
+  ArrayList() pointer = _front;//pointer to first thing
+  for ( int i = 0; i < _counter; i++ ) {
+  retStr += " ";
+  retStr += pointer.getValue();//add thing to String
+  pointer = pointer.getNext();//move pointer to next thing
+  }
+  return retStr;    
+*/
+}//O(?)
+
+
+
+public static void main( String[] args ) {
+	
+    Queue<String> ALQueuelJ = new ALQueue<String>();
+    System.out.println("\nnow enqueuing thrice..."); 
+    ALQueuelJ.enqueue("James");
+    ALQueuelJ.enqueue("Todd");
+    ALQueuelJ.enqueue("Smith");
+    System.out.println("\nnow testing toString()..."); 
+    System.out.println( ALQueuelJ ); //for testing toString()...
+    System.out.println("\nnow dequeuing thrice..."); 
+    System.out.println( ALQueuelJ.dequeue() );
+    System.out.println( ALQueuelJ.dequeue() );
+    System.out.println( ALQueuelJ.dequeue() );
+    System.out.println("\nDequeuing from empty queue should yield error..."); 
+    System.out.println( ALQueuelJ.dequeue() );
+    /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
+      ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
+
+}//end main
 
 }//end class ALQueue
