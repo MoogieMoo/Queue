@@ -21,22 +21,11 @@ import java.util.ArrayList;
 public class ALQueue<T> implements Queue<T> {
 
     private ArrayList<T> queue = new ArrayList<T>();
-    T _front;
-    T _end;
-
-    /*
-    // default constructor creates an empty queue
-    public ALQueue()
-    { 
-	_front = queue.get(0);
-	_end = queue.get( queue.size() - 1 );	
-    }
-    */
-
-    // means of adding a thing to the collection
+    
     public void enqueue( T enQVal ) 
     {
 	queue.add( enQVal );
+	System.out.println( queue );//diagnostic
     }//O(?)
 
 
