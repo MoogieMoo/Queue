@@ -1,3 +1,8 @@
+// Maggie Xia
+// APCS2 pd1
+// HW28--Now Let’s Consider You Lot at Fake Terry’s
+// 2017-03-30
+
 /*****************************************************
  * class RQueue
  * A linked-list-based, randomized queue
@@ -53,7 +58,24 @@ public class RQueue<T> implements Queue<T>
     // assume _queue ! empty
     public T dequeue() 
     { 
-	/* YIH */
+	if ( _size == 1 ) {//only one thing to remove
+	    T retQ = _front.getValue();//set thing to return
+	    _front = null;
+	    _end = null;
+	    _size -= 1;//update number of things in the collection
+	    return retQ;
+	}
+	else if ( _size == 0 ) {//nothing to remove
+	    System.out.println( "Error! Nothing to remove!" );
+	    return null;
+	}
+	else {//non-empty queue
+	    sample();
+	    T retQ = _front.getValue();//set thing to return
+	    _front = _front.getNext();//move _front pointer to next thing
+	    _size -= 1;//update number of things in the collection
+	    return retQ;
+	}
     }
 
 
@@ -72,22 +94,35 @@ public class RQueue<T> implements Queue<T>
      ******************************************/
     public void sample () 
     {
-	LLNode s = _front;
-	int randomNumber = (int) (Math.random() * _size) + 1;
-	( 
+	LLNode s = _end;
+	_end.setNext( _front );
+	int rand = (int) (Math.random() * _size);
+	for ( int i = 0; i < rand; i++ ) {
+	    s = s.getNext();
+	}
+	_end  = s;
+	_front = s.getNext();
+	_end.setNext( null );	
     }
 
 
     public boolean isEmpty() 
     { 
-	/* YIH */
+	return _size == 0;//this is self explanatory
     }//O(1)
 
 
     // print each node, separated by spaces
     public String toString() 
     { 
-	/* YIH */
+	String retStr = "";
+	LLNode pointer = _front;//pointer to first thing
+	for ( int i = 0; i < _size; i++ ) {
+	    retStr += " ";
+	    retStr += pointer.getValue();//add thing to String
+	    pointer = pointer.getNext();//move pointer to next thing
+	}
+	return retStr;  
     }//O(n)
 
 
@@ -95,7 +130,6 @@ public class RQueue<T> implements Queue<T>
     //main method for testing
     public static void main( String[] args ) 
     {
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  Queue<String> PirateQueue = new RQueue<String>();
 
 	  System.out.println("\nnow enqueuing..."); 
@@ -119,6 +153,7 @@ public class RQueue<T> implements Queue<T>
 
 	  System.out.println("\nnow dequeuing fr empty queue..."); 
 	  System.out.println( PirateQueue.dequeue() );
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }//end main
 
