@@ -55,7 +55,7 @@ public class ALQueue<T> implements Queue<T> {
 	}
 	_front = copy;//update queue
 	return ret;
-    }
+    
     /*
       if ( _counter == 1 ) {//only one thing to remove
       T retQ = _front.getValue();//set thing to return
@@ -76,83 +76,82 @@ public class ALQueue<T> implements Queue<T> {
       }
     */
     
-}//O(?)
+    }//O(?)
 
 
-// means of peeking at thing next in line for removal
-public T peekFront() 
-{
-    //error
-    if ( queue.size() <= 1 ) {//nothing "next in queue"
-	System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
-	return null;
-    }
+    // means of peeking at thing next in line for removal
+    public T peekFront() 
+    {
+	//error
+	if ( queue.size() <= 1 ) {//nothing "next in queue"
+	    System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
+	    return null;
+	}
 	
-    T ret = queue.get(1);//next thing is at index 1
-    return ret;
-}
-/*
-  if ( _counter <= 1 ) {//nothing "next in queue"
-  System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
-  return null;
-  }
-  else {//something "next in queue"
-  T retQ = _front.getNext().getValue();//set return value
-  return retQ;
-  }
-*/
-}//O(?)
+	T ret = queue.get(1);//next thing is at index 1
+	return ret;
+    
+    /*
+      if ( _counter <= 1 ) {//nothing "next in queue"
+      System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
+      return null;
+      }
+      else {//something "next in queue"
+      T retQ = _front.getNext().getValue();//set return value
+      return retQ;
+      }
+    */
+    }//O(?)
 
 
-public boolean isEmpty() 
-{
-    return queue.size() == 0;//this is self explanatory
-}//O(?)
+    public boolean isEmpty() 
+    {
+	return queue.size() == 0;//this is self explanatory
+    }//O(?)
 
 
-// print each node, separated by spaces
-public String toString() 
-{
-    String ret = "";
-    for ( int i = 0; i < queue.size(); i++ ) {//traverse
-	ret += " ";
-	ret += queue.get(i);//add to String
-    }
-    return ret;
-}
+    // print each node, separated by spaces
+    public String toString() 
+    {
+	String ret = "";
+	for ( int i = 0; i < queue.size(); i++ ) {//traverse
+	    ret += " ";
+	    ret += queue.get(i);//add to String
+	}
+	return ret;
+   	
+	/*
+	  String retStr = "";
+	  ArrayList() pointer = _front;//pointer to first thing
+	  for ( int i = 0; i < _counter; i++ ) {
+	  retStr += " ";
+	  retStr += pointer.getValue();//add thing to String
+	  pointer = pointer.getNext();//move pointer to next thing
+	  }
+	  return retStr;    
+	*/
+    }//O(?)
+
+
+
+    public static void main( String[] args ) {
 	
-/*
-  String retStr = "";
-  ArrayList() pointer = _front;//pointer to first thing
-  for ( int i = 0; i < _counter; i++ ) {
-  retStr += " ";
-  retStr += pointer.getValue();//add thing to String
-  pointer = pointer.getNext();//move pointer to next thing
-  }
-  return retStr;    
-*/
-}//O(?)
+	Queue<String> ALQueuelJ = new ALQueue<String>();
+	System.out.println("\nnow enqueuing thrice..."); 
+	ALQueuelJ.enqueue("James");
+	ALQueuelJ.enqueue("Todd");
+	ALQueuelJ.enqueue("Smith");
+	System.out.println("\nnow testing toString()..."); 
+	System.out.println( ALQueuelJ ); //for testing toString()...
+	System.out.println("\nnow dequeuing thrice..."); 
+	System.out.println( ALQueuelJ.dequeue() );
+	System.out.println( ALQueuelJ.dequeue() );
+	System.out.println( ALQueuelJ.dequeue() );
+	System.out.println("\nDequeuing from empty queue should yield error..."); 
+	System.out.println( ALQueuelJ.dequeue() );
+	/*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
+	  ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
 
-
-
-public static void main( String[] args ) {
-	
-    Queue<String> ALQueuelJ = new ALQueue<String>();
-    System.out.println("\nnow enqueuing thrice..."); 
-    ALQueuelJ.enqueue("James");
-    ALQueuelJ.enqueue("Todd");
-    ALQueuelJ.enqueue("Smith");
-    System.out.println("\nnow testing toString()..."); 
-    System.out.println( ALQueuelJ ); //for testing toString()...
-    System.out.println("\nnow dequeuing thrice..."); 
-    System.out.println( ALQueuelJ.dequeue() );
-    System.out.println( ALQueuelJ.dequeue() );
-    System.out.println( ALQueuelJ.dequeue() );
-    System.out.println("\nDequeuing from empty queue should yield error..."); 
-    System.out.println( ALQueuelJ.dequeue() );
-    /*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
-      ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
-
-}//end main
+    }//end main
 
 }//end class ALQueue
