@@ -20,12 +20,18 @@ import java.util.ArrayList;
 
 public class ALQueue<T> implements Queue<T> {
 
-    private ArrayList<T> queue = new ArrayList<T>();
-    
+    private ArrayList<T> queue;
+
+    // default constructor creates an empty queue
+    public ALQueue()
+    { 
+	queue = new ArrayList<T>();
+    }
+
+    // means of adding a thing to the collection
     public void enqueue( T enQVal ) 
     {
 	queue.add( enQVal );
-	System.out.println( queue );//diagnostic
     }//O(?)
 
 
@@ -40,33 +46,9 @@ public class ALQueue<T> implements Queue<T> {
 	    return null;
 	}
 
-	T ret = _front;//set thing to return
-	ArrayList<T> copy = new ArrayList<T>( queue.size() - 1);
-	for ( int i = 1; i < copy.size(); i++ ) {//copy the ArrayList excluding removed thing
-	    copy.set( i - 1, queue.get(i) );
-	}
-	queue = copy;//update queue
+	T ret = queue.get(0);
+	queue.remove(0);
 	return ret;
-    
-    /*
-      if ( _counter == 1 ) {//only one thing to remove
-      T retQ = _front.getValue();//set thing to return
-      _front = null;
-      _end = null;
-      _counter -= 1;//update number of things in the collection
-      return retQ;
-      }
-      else if ( _counter == 0 ) {//nothing to remove
-      System.out.println( "Error! Nothing to remove!" );
-      return null;
-      }
-      else {//non-empty queue
-      T retQ = _front.getValue();//set thing to return
-      _front = _front.getNext();//move _front pointer to next thing
-      _counter -= 1;//update number of things in the collection
-      return retQ;
-      }
-    */
     
     }//O(?)
 
@@ -82,17 +64,7 @@ public class ALQueue<T> implements Queue<T> {
 	
 	T ret = queue.get(1);//next thing is at index 1
 	return ret;
-    
-    /*
-      if ( _counter <= 1 ) {//nothing "next in queue"
-      System.out.println( "Peek-a-boo! Nothing to see :(" );//error message
-      return null;
-      }
-      else {//something "next in queue"
-      T retQ = _front.getNext().getValue();//set return value
-      return retQ;
-      }
-    */
+
     }//O(?)
 
 
@@ -110,18 +82,7 @@ public class ALQueue<T> implements Queue<T> {
 	    ret += " ";
 	    ret += queue.get(i);//add to String
 	}
-	return ret;
-   	
-	/*
-	  String retStr = "";
-	  ArrayList() pointer = _front;//pointer to first thing
-	  for ( int i = 0; i < _counter; i++ ) {
-	  retStr += " ";
-	  retStr += pointer.getValue();//add thing to String
-	  pointer = pointer.getNext();//move pointer to next thing
-	  }
-	  return retStr;    
-	*/
+	return ret;	
     }//O(?)
 
 
