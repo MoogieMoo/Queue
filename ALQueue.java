@@ -16,7 +16,7 @@
 
 import java.util.NoSuchElementException;
 import java.lang.RuntimeException;
-import java.lang.ArrayList;
+import java.util.ArrayList;
 
 public class ALQueue<T> implements Queue<T> {
 
