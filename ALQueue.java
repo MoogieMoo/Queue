@@ -19,10 +19,9 @@
 
 public class ALQueue<T> implements Queue<T> {
 
-    private ArrayList()<T> queue;
+    private ArrayList<T> queue = new ArrayList<T>();
     T _front;
     T _end;
-    int _counter;
 
     // default constructor creates an empty queue
     public ALQueue()
@@ -50,7 +49,7 @@ public class ALQueue<T> implements Queue<T> {
 	}
 
 	T ret = _front;//set thing to return
-	ArrayList()<T> copy = new ArrayList(queue.size() - 1)<T>;
+	List<T> copy = new ArrayList<T>( queue.size() - 1);
 	for ( int i = 1; i < copy.size(); i++ ) {//copy the ArrayList excluding removed thing
 	    copy.set( i - 1, queue.get(i) );
 	}
