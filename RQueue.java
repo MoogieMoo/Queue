@@ -30,11 +30,11 @@ public class RQueue<T> implements Queue<T>
 
     // default constructor creates an empty queue
     public RQueue() 
-	{ 
-	    _front = null;
-	    _end = null;
-	    _size = 0;
-	}
+    { 
+	_front = null;
+	_end = null;
+	_size = 0;
+    }
 
 
     public void enqueue( T enQVal ) 
@@ -89,8 +89,8 @@ public class RQueue<T> implements Queue<T>
     /******************************************
      * void sample() -- a means of "shuffling" the queue
      * algo:
-     * 
-     * 
+     * make circular and break circle at a random
+     * point--using n 'getNext()'s
      ******************************************/
     public void sample () 
     {
@@ -130,29 +130,29 @@ public class RQueue<T> implements Queue<T>
     //main method for testing
     public static void main( String[] args ) 
     {
-	  Queue<String> PirateQueue = new RQueue<String>();
+	Queue<String> PirateQueue = new RQueue<String>();
 
-	  System.out.println("\nnow enqueuing..."); 
-	  PirateQueue.enqueue("Dread");
-	  PirateQueue.enqueue("Pirate");
-	  PirateQueue.enqueue("Robert");
-	  PirateQueue.enqueue("Blackbeard");
-	  PirateQueue.enqueue("Peter");
-	  PirateQueue.enqueue("Stuyvesant");
+	System.out.println("\nnow enqueuing..."); 
+	PirateQueue.enqueue("Dread");
+	PirateQueue.enqueue("Pirate");
+	PirateQueue.enqueue("Robert");
+	PirateQueue.enqueue("Blackbeard");
+	PirateQueue.enqueue("Peter");
+	PirateQueue.enqueue("Stuyvesant");
 
-	  System.out.println("\nnow testing toString()..."); 
-	  System.out.println( PirateQueue ); //for testing toString()...
+	System.out.println("\nnow testing toString()..."); 
+	System.out.println( PirateQueue ); //for testing toString()...
 
-	  System.out.println("\nnow dequeuing..."); 
-	  System.out.println( PirateQueue.dequeue() );
-	  System.out.println( PirateQueue.dequeue() );
-	  System.out.println( PirateQueue.dequeue() );
-	  System.out.println( PirateQueue.dequeue() );
-	  System.out.println( PirateQueue.dequeue() );
-	  System.out.println( PirateQueue.dequeue() );
+	System.out.println("\nnow dequeuing..."); 
+	System.out.println( PirateQueue.dequeue() );
+	System.out.println( PirateQueue.dequeue() );
+	System.out.println( PirateQueue.dequeue() );
+	System.out.println( PirateQueue.dequeue() );
+	System.out.println( PirateQueue.dequeue() );
+	System.out.println( PirateQueue.dequeue() );
 
-	  System.out.println("\nnow dequeuing fr empty queue..."); 
-	  System.out.println( PirateQueue.dequeue() );
+	System.out.println("\nnow dequeuing fr empty queue..."); 
+	System.out.println( PirateQueue.dequeue() );
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }//end main
